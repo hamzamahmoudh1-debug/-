@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#064e3b">
+
+<title>حصن المسلم</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    margin:0;
+    font-family:Tahoma,Arial,sans-serif;
+    background:#061b15;
+    color:white;
+}
+
+header{
+    background:linear-gradient(135deg,#08724f,#043b2b);
+    padding:22px 15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 3px 15px #0008;
+}
+
+header h1{
+    margin:0;
+    font-size:27px;
+}
+
+header p{
+    margin:7px 0 0;
+    color:#c7e8dc;
+}
+
+.container{
+    width:100%;
+    max-width:850px;
+    margin:auto;
+    padding:18px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.home-title{
+    text-align:center;
+    margin:10px 0 25px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.card{
+    background:linear-gradient(145deg,#0b4c39,#082c22);
+    border:1px solid #17674f;
+    border-radius:20px;
+    padding:22px 10px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+    box-shadow:0 8px 25px #0004;
+}
+
+.card:active{
+    transform:scale(.96);
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.card h3{
+    margin:5px 0;
+    font-size:17px;
+}
+
+.card p{
+    color:#a9cfc1;
+    font-size:12px;
+    margin:6px 0 0;
+}
+
+.section-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.section-head h2{
+    margin:0;
+    font-size:22px;
+}
+
+.back{
+    background:#123c30;
+    border:1px solid #28725b;
+    color:white;
+    padding:9px 14px;
+    border-radius:12px;
+}
+
+.info{
+    background:#0a3025;
+    border:1px solid #175843;
+    border-radius:15px;
+    padding:13px;
+    margin-bottom:18px;
+    color:#c8e3da;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.zikr{
+    background:#09291f;
+    border:1px solid #15533f;
+    border-radius:18px;
+    padding:17px;
+    margin-bottom:14px;
+}
+
+.zikr-number{
+    color:#73d2ae;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.zikr-text{
+    font-size:18px;
+    line-height:2;
+}
+
+.counter{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:15px;
+}
+
+.count{
+    min-width:75px;
+    padding:11px 8px;
+    text-align:center;
+    background:#051b15;
+    border:1px solid #28664f;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+.add{
+    flex:1;
+    border:0;
+    padding:12px;
+    border-radius:13px;
+    background:#11855f;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.add:active{
+    transform:scale(.98);
+}
+
+.tasbeeh{
+    background:linear-gradient(145deg,#0b4e3a,#06281f);
+    border:1px solid #27745b;
+    border-radius:25px;
+    text-align:center;
+    padding:25px;
+}
+
+.tasbeeh-number{
+    font-size:65px;
+    font-weight:bold;
+    margin:25px 0;
+}
+
+.tasbeeh-button{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:7px solid #2c8065;
+    background:#0d6048;
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    box-shadow:0 10px 30px #0007;
+}
+
+.tasbeeh-button:active{
+    transform:scale(.93);
+}
+
+.reset{
+    margin-top:20px;
+    padding:11px 20px;
+    border-radius:12px;
+    border:1px solid #80504b;
+    background:#39201d;
+    color:#ffd8d3;
+}
+
+.quran{
+    background:#09291f;
+    border:1px solid #185640;
+    border-radius:20px;
+    padding:20px;
+    line-height:2;
+}
+
+.quran button{
+    width:100%;
+    margin-top:10px;
+    padding:13px;
+    border:0;
+    border-radius:12px;
+    background:#12815d;
+    color:white;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    color:#719b8e;
+    font-size:12px;
+    padding:30px 0;
+}
+
+@media(max-width:480px){
+    .zikr-text{
+        font-size:17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🕌 حصن المسلم</h1>
+    <p>أذكار • تسبيح • قرآن • رقية</p>
+</header>
+
+<div class="container">
+
+<!-- الرئيسية -->
+<section id="home" class="page active">
+
+    <div class="home-title">
+        <h2>السلام عليكم ورحمة الله وبركاته</h2>
+        <p>اختر القسم الذي تريد الدخول إليه</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card" onclick="openPage('morning')">
+            <div class="icon">🌅</div>
+            <h3>أذكار الصباح</h3>
+            <p>31 ذكرًا</p>
+        </div>
+
+        <div class="card" onclick="openPage('evening')">
+            <div class="icon">🌇</div>
+            <h3>أذكار المساء</h3>
+            <p>30 ذكرًا</p>
+        </div>
+
+        <div class="card" onclick="openPage('prayer')">
+            <div class="icon">🕌</div>
+            <h3>أذكار الصلاة</h3>
+            <p>كاملة</p>
+        </div>
+
+        <div class="card" onclick="openPage('sleep')">
+            <div class="icon">🌙</div>
+            <h3>أذكار النوم</h3>
+            <p>قبل النوم</p>
+        </div>
+
+        <div class="card" onclick="openPage('ruqyah')">
+            <div class="icon">🤲</div>
+            <h3>الرقية الشرعية</h3>
+            <p>من القرآن والسنة</p>
+        </div>
+
+        <div class="card" onclick="openPage('tasbeeh')">
+            <div class="icon">📿</div>
+            <h3>السبحة الإلكترونية</h3>
+            <p>عداد مستقل</p>
+        </div>
+
+        <div class="card" onclick="openPage('quran')">
+            <div class="icon">📖</div>
+            <h3>القرآن الكريم</h3>
+            <p>قراءة وختم القرآن</p>
+        </div>
+
+    </div>
+
+    <footer>
+        اللهم أعنّا على ذكرك وشكرك وحسن عبادتك
+    </footer>
+
+</section>
+
+
+<!-- الصباح -->
+<section id="morning" class="page">
+
+    <div class="section-head">
+        <h2>🌅 أذكار الصباح</h2>
+        <button class="back" onclick="home()">الرئيسية</button>
+    </div>
+
+    <div class="info">
+        عدد عناصر هذه القائمة داخل التطبيق: 31.
+    </div>
+
+    <div id="morningList"></div>
+
+</section>
+
+
+<!-- المساء -->
+<section id="evening" class="page">
+
+    <div class="section-head">
+        <h2>🌇 أذكار المساء</h2>
+        <button class="back" onclick="home()">الرئيسية</button>
+    </div>
+
+    <div class="info">
+        عدد عناصر هذه القائمة داخل التطبيق: 30.
+    </div>
+
+    <div id="eveningList"></div>
+
+</section>
+
+
+<!-- الصلاة -->
+<section id="prayer" class="page">
+
+    <div class="section-head">
+        <h2>🕌 أذكار الصلاة</h2>
+        <button class="back" onclick="home()">الرئيسية</button>
+    </div>
+
+    <div id="prayerList"></div>
+
+</section>
+
+
+<!-- النوم -->
+<section id="sleep" class="page">
+
+    <div class="section-head">
+        <h2>🌙 أذكار النوم</h2>
+        <button class="back" onclick="home()">الرئيسية</button>
+    </div>
+
+    <div id="sleepList"></div>
+
+</section>
+
+
+<!-- الرقية -->
+<section id="ruqyah" class="page">
+
+    <div class="section-head">
+        <h2>🤲 الرقية الشرعية</h2>
+        <button class="back" onclick="home()">الرئيسية</button>
+    </div>
+
+    <div class="info">
+        الرقية الشرعية تكون بالقرآن والأدعية المشروعة، والشفاء بيد الله.
+    </div>
+
+    <div id="ruqyahList"></div>
+
+</section>
+
+
+<!-- السبحة -->
+<section id="tasbeeh" class="page">
+
+    <div class="section-head">
+        <h2>📿 السبحة الإلكترونية</h2>
+        <button class="back" onclick="home()">الرئيسية</button>
+    </div>
+
+    <div class="tasbeeh">
+
+        <h3>سبحان الله</h3>
+
+        <div class="tasbeeh-number" id="tasbeehNumber">
+            0
+        </div>
+
+        <button class="tasbeeh-button" onclick="tasbeeh()">
+            اضغط
+        </button>
+
+        <br>
+
+        <button class="reset" onclick="resetTasbeeh()">
+            تصفير العداد
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- القرآن -->
+<section id="quran" class="page">
+
+    <div class="section-head">
+        <h2>📖 القرآن الكريم</h2>
+        <button class="back" onclick="home()">الرئيسية</button>
+    </div>
+
+    <div class="quran">
+
+        <h3>ختم القرآن الكريم</h3>
+
+        <p>
+            يمكنك تسجيل عدد صفحات القرآن التي قرأتها.
+        </p>
+
+        <p>
+            الصفحات المقروءة:
+            <strong id="pagesRead">0</strong>
+            / 604
+        </p>
+
+        <div class="counter">
+            <button class="add" onclick="addPage()">
+                قرأت صفحة
+            </button>
+        </div>
+
+        <button onclick="resetQuran()">
+            إعادة البداية
+        </button>
+
+        <hr>
+
+        <h3>🤲 دعاء ختم القرآن</h3>
+
+        <p>
+            اللهم اجعل القرآن ربيع قلبي، ونور صدري،
+            وجلاء حزني، وذهاب همي، اللهم علمني منه
+            ما جهلت، وذكرني منه ما نسيت، وارزقني تلاوته
+            آناء الليل وأطراف النهار على الوجه الذي يرضيك عني.
+        </p>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* ==========================
+   البيانات
+========================== */
+
+const morning = [
+
+["آية الكرسي",1],
+
+["سورة الإخلاص",3],
+
+["سورة الفلق",3],
+
+["سورة الناس",3],
+
+["أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.",1],
+
+["اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور.",1],
+
+["اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي، فإنه لا يغفر الذنوب إلا أنت.",1],
+
+["رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.",3],
+
+["اللهم فاطر السماوات والأرض، عالم الغيب والشهادة، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي ومن شر الشيطان وشركه.",1],
+
+["اللهم إني أسألك العفو والعافية في الدنيا والآخرة.",1],
+
+["بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم.",3],
+
+["حسبي الله لا إله إلا هو، عليه توكلت وهو رب العرش العظيم.",7],
+
+["اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت.",3],
+
+["سبحان الله وبحمده.",100],
+
+["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",100],
+
+["يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله.",1],
+
+["اللهم إني أسألك الهدى والتقى والعفاف والغنى.",1],
+
+["اللهم إني أسألك علمًا نافعًا ورزقًا طيبًا وعملًا متقبلًا.",1],
+
+["أصبحنا على فطرة الإسلام، وعلى كلمة الإخلاص، وعلى دين نبينا محمد ﷺ.",1],
+
+["أعوذ بكلمات الله التامات من شر ما خلق.",3],
+
+["سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته.",3],
+
+["أستغفر الله وأتوب إليه.",100],
+
+["اللهم صل وسلم وبارك على نبينا محمد ﷺ.",10],
+
+["اللهم إني أعوذ بك من الكفر والفقر وعذاب القبر.",3],
+
+["اللهم اكفني بحلالك عن حرامك وأغنني بفضلك عمن سواك.",1],
+
+["اللهم إني أسألك رضاك والجنة وأعوذ بك من سخطك والنار.",1],
+
+["اللهم إني أعوذ بك من شر نفسي ومن شر كل دابة أنت آخذ بناصيتها.",1],
+
+["اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي.",1],
+
+["اللهم إني أسألك السلامة والعافية.",1],
+
+["اللهم اجعل هذا اليوم خيرًا وبركة.",1],
+
+["اللهم أعني على ذكرك وشكرك وحسن عبادتك.",1]
+
+];
+
+
+/* المساء 30 */
+
+const evening = [
+
+["آية الكرسي",1],
+
+["سورة الإخلاص",3],
+
+["سورة الفلق",3],
+
+["سورة الناس",3],
+
+["أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها.",1],
+
+["اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.",1],
+
+["سيد الاستغفار.",1],
+
+["رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.",3],
+
+["بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم.",3],
+
+["حسبي الله لا إله إلا هو، عليه توكلت وهو رب العرش العظيم.",7],
+
+["اللهم إني أسألك العفو والعافية في الدنيا والآخرة.",1],
+
+["اللهم فاطر السماوات والأرض عالم الغيب والشهادة رب كل شيء ومليكه.",1],
+
+["سبحان الله وبحمده.",100],
+
+["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",100],
+
+["أعوذ بكلمات الله التامات من شر ما خلق.",3],
+
+["اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت.",3],
+
+["اللهم إني أعوذ بك من الكفر والفقر وعذاب القبر.",3],
+
+["يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله.",1],
+
+["اللهم إني أسألك الهدى والتقى والعفاف والغنى.",1],
+
+["أستغفر الله وأتوب إليه.",100],
+
+["سبحان الله وبحمده، عدد خلقه ورضا نفسه وزنة عرشه ومداد كلماته.",3],
+
+["اللهم صل وسلم وبارك على نبينا محمد ﷺ.",10],
+
+["اللهم إني أسألك رضاك والجنة وأعوذ بك من سخطك والنار.",1],
+
+["اللهم اكفني بحلالك عن حرامك وأغنني بفضلك عمن سواك.",1],
+
+["اللهم إني أسألك علمًا نافعًا ورزقًا طيبًا وعملًا متقبلًا.",1],
+
+["اللهم إني أعوذ بك من شر هذه الليلة وشر ما بعدها.",1],
+
+["اللهم إني أعوذ بك من الكسل وسوء الكبر.",1],
+
+["اللهم إني أعوذ بك من عذاب في النار وعذاب في القبر.",1],
+
+["اللهم إني أسألك السلامة والعافية.",1],
+
+["اللهم اجعل ليلتي هذه خيرًا وبركة وأمنًا وطمأنينة.",1]
+
+];
+
+
+/* الصلاة */
+
+const prayer = [
+
+["أستغفر الله.",3],
+
+["اللهم أنت السلام، ومنك السلام، تباركت يا ذا الجلال والإكرام.",1],
+
+["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",1],
+
+["اللهم لا مانع لما أعطيت، ولا معطي لما منعت، ولا ينفع ذا الجد منك الجد.",1],
+
+["سبحان الله.",33],
+
+["الحمد لله.",33],
+
+["الله أكبر.",33],
+
+["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",1],
+
+["آية الكرسي.",1],
+
+["سورة الإخلاص.",1],
+
+["سورة الفلق.",1],
+
+["سورة الناس.",1]
+
+];
+
+
+/* النوم */
+
+const sleep = [
+
+["آية الكرسي.",1],
+
+["سورة الإخلاص.",3],
+
+["سورة الفلق.",3],
+
+["سورة الناس.",3],
+
+["سبحان الله.",33],
+
+["الحمد لله.",33],
+
+["الله أكبر.",34],
+
+["اللهم باسمك أموت وأحيا.",1],
+
+["اللهم أسلمت نفسي إليك، ووجهت وجهي إليك، وفوضت أمري إليك، وألجأت ظهري إليك، رغبة ورهبة إليك، لا ملجأ ولا منجا منك إلا إليك.",1]
+
+];
+
+
+/* الرقية */
+
+const ruqyah = [
+
+["سورة الفاتحة.",7],
+
+["آية الكرسي.",1],
+
+["سورة الإخلاص.",3],
+
+["سورة الفلق.",3],
+
+["سورة الناس.",3],
+
+["أذهب الباس رب الناس، واشف أنت الشافي، لا شفاء إلا شفاؤك، شفاءً لا يغادر سقمًا.",3],
+
+["باسم الله أرقيك، من كل شيء يؤذيك، من شر كل نفس أو عين حاسد، الله يشفيك، باسم الله أرقيك.",3],
+
+["أعوذ بكلمات الله التامة من كل شيطان وهامة، ومن كل عين لامة.",3]
+
+];
+
+
+/* ==========================
+   إنشاء القوائم
+========================== */
+
+function render(name,data){
+
+    const box=document.getElementById(name+"List");
+
+    box.innerHTML="";
+
+    data.forEach((item,index)=>{
+
+        const key=name+"_"+index;
+
+        let saved=
+            parseInt(localStorage.getItem(key)||"0");
+
+        if(saved>item[1]) saved=item[1];
+
+        const div=document.createElement("div");
+
+        div.className="zikr";
+
+        div.innerHTML=`
+
+            <div class="zikr-number">
+                الذكر ${index+1} من ${data.length}
+            </div>
+
+            <div class="zikr-text">
+                ${item[0]}
+            </div>
+
+            <div class="counter">
+
+                <div class="count" id="count_${key}">
+                    ${saved} / ${item[1]}
+                </div>
+
+                <button class="add"
+                    onclick="increase('${key}',${item[1]})">
+                    اضغط للذكر
+                </button>
+
+            </div>
+        `;
+
+        box.appendChild(div);
+    });
+}
+
+
+/* ==========================
+   العدادات
+========================== */
+
+function increase(key,target){
+
+    let value=
+        parseInt(localStorage.getItem(key)||"0");
+
+    if(value<target){
+        value++;
+        localStorage.setItem(key,value);
+    }
+
+    const counter=
+        document.getElementById("count_"+key);
+
+    if(counter){
+        counter.textContent=
+            value+" / "+target;
+    }
+}
+
+
+/* ==========================
+   التنقل
+========================== */
+
+function openPage(id){
+
+    document.querySelectorAll(".page")
+    .forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    document.getElementById(id)
+    .classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+function home(){
+
+    openPage("home");
+}
+
+
+/* ==========================
+   السبحة
+========================== */
+
+let tasbeehCount=
+    parseInt(localStorage.getItem("tasbeeh")||"0");
+
+document.getElementById("tasbeehNumber")
+.textContent=tasbeehCount;
+
+
+function tasbeeh(){
+
+    tasbeehCount++;
+
+    localStorage.setItem(
+        "tasbeeh",
+        tasbeehCount
+    );
+
+    document.getElementById("tasbeehNumber")
+    .textContent=tasbeehCount;
+}
+
+
+function resetTasbeeh(){
+
+    tasbeehCount=0;
+
+    localStorage.setItem("tasbeeh",0);
+
+    document.getElementById("tasbeehNumber")
+    .textContent=0;
+}
+
+
+/* ==========================
+   ختم القرآن
+========================== */
+
+let pages=
+    parseInt(localStorage.getItem("quranPages")||"0");
+
+document.getElementById("pagesRead")
+.textContent=pages;
+
+
+function addPage(){
+
+    if(pages<604){
+        pages++;
+        localStorage.setItem(
+            "quranPages",
+            pages
+        );
+    }
+
+    document.getElementById("pagesRead")
+    .textContent=pages;
+}
+
+
+function resetQuran(){
+
+    pages=0;
+
+    localStorage.setItem(
+        "quranPages",
+        0
+    );
+
+    document.getElementById("pagesRead")
+    .textContent=0;
+}
+
+
+/* ==========================
+   تشغيل
+========================== */
+
+render("morning",morning);
+render("evening",evening);
+render("prayer",prayer);
+render("sleep",sleep);
+render("ruqyah",ruqyah);
+
+</script>
+
+</body>
+</html>
